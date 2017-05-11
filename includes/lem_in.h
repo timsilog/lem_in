@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:59:10 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/09 14:37:52 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/10 16:03:02 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ typedef struct	s_room
 	struct s_room	**links;
 	int				coord[2];
 }					t_room;
+
+int					lem_in_atoi(const char *str);
 
 #endif

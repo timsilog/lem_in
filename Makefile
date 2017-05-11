@@ -6,7 +6,7 @@
 #    By: tjose <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/09 12:58:46 by tjose             #+#    #+#              #
-#    Updated: 2017/05/09 13:51:35 by tjose            ###   ########.fr        #
+#    Updated: 2017/05/10 16:18:04 by tjose            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 SRCS = $(addprefix $(SRCDIR), $(SRCFILES))
 OBJS = $(addprefix $(OBJDIR), $(SRCFILES:.c=.o))
-SRCFILES = main.c
+SRCFILES = main.c \
+		   lem_in_atoi.c
 SRCDIR = ./srcs/
 OBJDIR = ./objs/
 INCDIR = ./includes/

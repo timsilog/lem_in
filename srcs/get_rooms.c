@@ -1,53 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_rooms.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/09 13:01:08 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/10 16:43:04 by tjose            ###   ########.fr       */
+/*   Created: 2017/05/10 16:18:43 by tjose             #+#    #+#             */
+/*   Updated: 2017/05/10 18:03:19 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-/*static void	get_rooms(char *line)
-{
-	add
-}*/
-
 /*
-** Throws error if num_ants:
-** -Exceeds max int
-** -Is less than 1
-*/
+ * no room
+ * no start/end
+ * accepts comments
+ */
 
-static int	get_num_ants(char *line)
+void		get_rooms(char *line)
 {
-	int num_ants;
+	int	start;
+	int	end;
 
-	get_next_line(0, &line);
-	ft_printf("%s\n", line);
-	while (line[0] == '#')
+	start = 0;
+	end = 0;
+	while (1)
 	{
 		get_next_line(0, &line);
 		ft_printf("%s\n", line);
+		if (!ft_strcmp(line, "##start"))
+			start = 1;
+		else if (!ft_strcmp(line, "##end"))
+			end = 1;
+		else if (line[0] == '#')
+			continue ;
+		else
+			if (!valid_room(line))
+			{
+				ft_printf("ERROR: Not a valid room\n");
+				exit(-1);
+			}
+
 	}
-	num_ants = lem_in_atoi(line);
-	return (num_ants);
-}
 
-int			main()
-{
-	char	*line;
-	int		num_ants;
-	//t_room	**rooms;
-
-	line = 0;
-	num_ants = get_num_ants(line);
-	//get_rooms(line, rooms);
-	//get_links(line, rooms);
-	free(line);
-	return (0);
 }
