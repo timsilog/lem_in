@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   throw_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/30 20:12:46 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/11 19:24:46 by tjose            ###   ########.fr       */
+/*   Created: 2017/05/11 18:36:06 by tjose             #+#    #+#             */
+/*   Updated: 2017/05/11 18:36:36 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem_in.h"
 
-char	*ft_strncpy(char *dest, const char *src, size_t n)
+void	throw_error(char *msg)
 {
-	size_t i;
-
-	i = 0;
-	while (i < n)
-	{
-		if (src[i] == '\0')
-		{
-			dest[i] = '\0';
-			break ;
-		}
-		else
-			dest[i] = src[i];
-		i++;
-	}
-	while (i < n)
-		dest[i++] = '\0';
-	return (dest);
+	ft_printf("%s\n", msg);
+	exit(-1);
 }

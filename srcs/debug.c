@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/30 20:12:46 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/11 19:24:46 by tjose            ###   ########.fr       */
+/*   Created: 2017/05/11 21:43:21 by tjose             #+#    #+#             */
+/*   Updated: 2017/05/11 21:47:41 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem_in.h"
 
-char	*ft_strncpy(char *dest, const char *src, size_t n)
+void	print_room_list(t_rlist *room_list)
 {
-	size_t i;
-
-	i = 0;
-	while (i < n)
+	while (room_list)
 	{
-		if (src[i] == '\0')
-		{
-			dest[i] = '\0';
-			break ;
-		}
-		else
-			dest[i] = src[i];
-		i++;
+		ft_printf("name: %s\ncoord: %d,%d\n", room_list->name, room_list->coord[0], room_list->coord[1]);
+		if (room_list->
+		room_list = room_list->next;
 	}
-	while (i < n)
-		dest[i++] = '\0';
-	return (dest);
 }

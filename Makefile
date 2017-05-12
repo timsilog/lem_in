@@ -6,7 +6,7 @@
 #    By: tjose <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/09 12:58:46 by tjose             #+#    #+#              #
-#    Updated: 2017/05/10 16:18:04 by tjose            ###   ########.fr        #
+#    Updated: 2017/05/11 21:45:57 by tjose            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,10 @@ CFLAGS = -Wall -Werror -Wextra
 SRCS = $(addprefix $(SRCDIR), $(SRCFILES))
 OBJS = $(addprefix $(OBJDIR), $(SRCFILES:.c=.o))
 SRCFILES = main.c \
-		   lem_in_atoi.c
+		   lem_in_atoi.c \
+		   get_rooms.c \
+		   throw_error.c \
+		   debug.c
 SRCDIR = ./srcs/
 OBJDIR = ./objs/
 INCDIR = ./includes/
