@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 16:18:43 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/11 21:46:38 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/14 23:00:50 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@
  * accepts comments
  */
 
-/*
-** Returns 1 and a room if it's a valid room
-** Returns 0 if there were no spaces indicating we're done reading rooms
-*/
+
 
 static void	add_room(t_rlist **room_list, int coord[2], char *name, t_cond cond)
 {
@@ -37,6 +34,28 @@ static void	add_room(t_rlist **room_list, int coord[2], char *name, t_cond cond)
 	temp->next = *room_list;
 	*room_list = temp;
 }
+
+static void	check_dupes(t_rlist *room_list, char *name, int coord[2])
+{
+	//do i need double pointer for freeing here?
+	//free room list and name here
+	while (room_list)
+	{
+		if (!ft_strcmp(name, room_list->name))
+		{
+			throw_error("ERROR: Duplicate room names\n");
+		}
+		if (coord[0] == room_list->coord[0] && coord[1] == room_list->coord[1])
+		{
+			throw_error("ERROR: Duplicate room coordinates\n");
+		}
+	}
+}
+
+/*
+** Returns 1 and a room if it's a valid room
+** Returns 0 if there were no spaces indicating we're done reading rooms
+*/
 
 static int	valid_room(char *line, t_rlist **room_list, t_cond cond)
 {
@@ -62,6 +81,7 @@ static int	valid_room(char *line, t_rlist **room_list, t_cond cond)
 		throw_error("ERROR: Memory error");
 	name = ft_strncpy(name, line, size);
 	name[size] = '\0';
+	check_dupes(room_list, name, coord);
 	add_room(room_list, coord, name, cond);
 	return (0);
 }
@@ -92,7 +112,7 @@ static void	check_rooms(char *line, int *start, int *end, t_rlist **room_list)
 	}
 }
 
-void		get_rooms(char *line, t_room **rooms)
+void		get_rooms(char **line, t_room **rooms)
 {
 	int	start;
 	int	end;
@@ -102,8 +122,7 @@ void		get_rooms(char *line, t_room **rooms)
 	start = 0;
 	end = 0;
 	check_rooms(line, &start, &end, &room_list);
-	print_room_list(room_list);
+	print_room_list(room_list);/////////////////////////
 	if (!start || ! end)
 		throw_error("Error: Missing start or end");
-	(void)rooms;
 }
