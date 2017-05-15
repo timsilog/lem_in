@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:59:10 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/11 21:46:55 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/15 14:51:08 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ typedef struct		s_rlist
 	int				end;
 	struct s_rlist	*next;
 }					t_rlist;
+typedef struct		s_llist
+{
+	t_rlist			*link;
+	struct s_llist	*next;
+}					t_llist;
 typedef enum
 {
 	c_none,
@@ -42,8 +47,10 @@ typedef enum
 }	t_cond;
 
 int					lem_in_atoi(const char *str);
-void				get_rooms(char *line, t_room **rooms);
+void				get_rooms(char **line, t_room **rooms);
+void				get_link(char *line, t_room **rooms);
 void				throw_error(char *msg);
+void				free_rlist(t_rlist *room_list);
 
 
 void print_room_list(t_rlist *room_list);

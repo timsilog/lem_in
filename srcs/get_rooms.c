@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 16:18:43 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/14 23:00:50 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/15 14:28:04 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,28 @@ static void	add_room(t_rlist **room_list, int coord[2], char *name, t_cond cond)
 
 static void	check_dupes(t_rlist *room_list, char *name, int coord[2])
 {
-	//do i need double pointer for freeing here?
-	//free room list and name here
 	while (room_list)
 	{
 		if (!ft_strcmp(name, room_list->name))
 		{
+			free_rlist(room_list);
 			throw_error("ERROR: Duplicate room names\n");
 		}
 		if (coord[0] == room_list->coord[0] && coord[1] == room_list->coord[1])
 		{
+			free_rlist(room_list);
 			throw_error("ERROR: Duplicate room coordinates\n");
 		}
+		room_list = room_list->next;
 	}
 }
 
 /*
-** Returns 1 and a room if it's a valid room
+** Returns 1 and creates the room if it's a valid room
 ** Returns 0 if there were no spaces indicating we're done reading rooms
 */
 
-static int	valid_room(char *line, t_rlist **room_list, t_cond cond)
+static int	valid_room(char **line, t_rlist **room_list, t_cond cond)
 {
 	int		size;
 	char	*name;
@@ -66,44 +67,44 @@ static int	valid_room(char *line, t_rlist **room_list, t_cond cond)
 	size = 0;
 	if (cond == c_start || cond == c_end)
 	{
-		get_next_line(0, &line);
-		ft_printf("%s\n", line);
+		get_next_line(0, line);
+		ft_printf("%s\n", *line);
 	}
-	while (line[size] && line[size] != ' ')
+	while ((*line)[size] && (*line)[size] != ' ')
 		size++;
-	if (size == (int)ft_strlen(line))
+	if (size == (int)ft_strlen(*line))
 		return (1);
 	if (!size)
 		throw_error("ERROR: Not a valid room");
-	coord[0] = lem_in_atoi(&line[size + 1]);
-	coord[1] = lem_in_atoi(&line[size + 2 + ft_numlen(coord[0])]);
+	coord[0] = lem_in_atoi(&(*line)[size + 1]);
+	coord[1] = lem_in_atoi(&(*line)[size + 2 + ft_numlen(coord[0])]);
 	if (!(name = malloc(sizeof(char) * size + 1)))
 		throw_error("ERROR: Memory error");
-	name = ft_strncpy(name, line, size);
+	name = ft_strncpy(name, *line, size);
 	name[size] = '\0';
-	check_dupes(room_list, name, coord);
+	check_dupes(*room_list, name, coord);
 	add_room(room_list, coord, name, cond);
 	return (0);
 }
 
-static void	check_rooms(char *line, int *start, int *end, t_rlist **room_list)
+static void	check_rooms(char **line, int *start, int *end, t_rlist **room_list)
 {
 	int finished;
 
-	while (get_next_line(0, &line))
+	while (get_next_line(0, line))
 	{
-		ft_printf("%s\n", line);
-		if (!ft_strcmp(line, "##start"))
+		ft_printf("%s\n", *line);
+		if (!ft_strcmp(*line, "##start"))
 		{
 			*start = 1;
 			finished = valid_room(line, room_list, c_start);
 		}
-		else if (!ft_strcmp(line, "##end"))
+		else if (!ft_strcmp(*line, "##end"))
 		{
 			*end = 1;
 			finished = valid_room(line, room_list, c_end);
 		}
-		else if (line[0] == '#')
+		else if ((*line)[0] == '#')
 			continue ;
 		else 
 			finished = valid_room(line, room_list, c_none);

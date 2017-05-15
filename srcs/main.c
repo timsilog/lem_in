@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 13:01:08 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/14 21:29:50 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/15 14:50:35 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			main()
 	line = 0;
 	num_ants = get_num_ants(line);
 	get_rooms(&line, rooms);
-	//get_links(&line, rooms);
+	get_links(&line, rooms);
 	free(line);
 	return (0);
 }

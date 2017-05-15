@@ -6,7 +6,7 @@
 #    By: tjose <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/09 12:58:46 by tjose             #+#    #+#              #
-#    Updated: 2017/05/14 21:25:09 by tjose            ###   ########.fr        #
+#    Updated: 2017/05/15 15:08:30 by tjose            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ OBJS = $(addprefix $(OBJDIR), $(SRCFILES:.c=.o))
 SRCFILES = main.c \
 		   lem_in_atoi.c \
 		   get_rooms.c \
-		   throw_error.c \
+		   get_links.c \
+		   cleanup.c \
 		   debug.c
 SRCDIR = ./srcs/
 OBJDIR = ./objs/
