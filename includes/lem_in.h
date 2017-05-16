@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:59:10 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/15 14:51:08 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/16 14:59:01 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ typedef enum
 }	t_cond;
 
 int					lem_in_atoi(const char *str);
-void				get_rooms(char **line, t_room **rooms);
-void				get_link(char *line, t_room **rooms);
+t_rlist				*get_rooms(char **line);
+void				get_links(char *line, t_rlist *room_list);
 void				throw_error(char *msg);
 void				free_rlist(t_rlist *room_list);
 

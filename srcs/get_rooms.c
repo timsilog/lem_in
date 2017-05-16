@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 16:18:43 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/15 14:28:04 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/16 14:56:43 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ static void	check_rooms(char **line, int *start, int *end, t_rlist **room_list)
 	}
 }
 
-void		get_rooms(char **line, t_room **rooms)
+t_rlist		*get_rooms(char **line)
 {
 	int	start;
 	int	end;
@@ -126,4 +126,5 @@ void		get_rooms(char **line, t_room **rooms)
 	print_room_list(room_list);/////////////////////////
 	if (!start || ! end)
 		throw_error("Error: Missing start or end");
+	return (room_list);
 }
