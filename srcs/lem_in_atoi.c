@@ -6,13 +6,13 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 15:48:14 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/11 18:44:49 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/17 17:32:06 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int lem_in_atoi(const char *str)
+int	lem_in_atoi(const char *str)
 {
 	long	num;
 	int		count;
@@ -29,6 +29,6 @@ int lem_in_atoi(const char *str)
 		num = num * 10 + (str[count++] - 48);
 	num = neg_flag ? -num : num;
 	if ((str[count] && str[count] != ' ') || num > 2147483647 || num < 0)
-		throw_error("ERROR: invalid number");
+		throw_error("ERROR: invalid number", 0);
 	return ((int)num);
 }

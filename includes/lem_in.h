@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:59:10 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/16 14:59:01 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/17 17:16:28 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct		s_rlist
 	int				coord[2];
 	int				start;
 	int				end;
+	int				id;
 	struct s_rlist	*next;
 }					t_rlist;
 typedef struct		s_llist
@@ -49,9 +50,10 @@ typedef enum
 int					lem_in_atoi(const char *str);
 t_rlist				*get_rooms(char **line);
 void				get_links(char *line, t_rlist *room_list);
-void				throw_error(char *msg);
+void				throw_error(char *msg, t_rlist *room_list);
 void				free_rlist(t_rlist *room_list);
 
 
 void print_room_list(t_rlist *room_list);
+void print_map(int n, int map[][n]);
 #endif

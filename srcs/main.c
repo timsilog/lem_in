@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 13:01:08 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/16 14:58:31 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/17 17:38:03 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 static int	get_num_ants(char *line)
 {
-	int num_ants;
+	int	num_ants;
 
 	get_next_line(0, &line);
 	ft_printf("%s\n", line);
@@ -39,11 +39,10 @@ int			main()
 	int		num_ants;
 	t_rlist	*room_list;
 
-	rooms = 0;
 	line = 0;
 	num_ants = get_num_ants(line);
-	room_list = get_rooms(&line, rooms);
-	get_links(&line, room_list);
+	room_list = get_rooms(&line);
+	get_links_and_solve(line, room_list);
 	free(line);
 	return (0);
 }

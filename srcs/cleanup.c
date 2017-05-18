@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   throw_error.c                                      :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:36:06 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/15 14:07:40 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/17 16:59:30 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ void	free_rlist(t_rlist *room_list)
 	}
 }
 
-void	throw_error(char *msg)
+void	throw_error(char *msg, t_rlist *room_list)
 {
+	if (room_list)
+		free_rlist(room_list);
 	ft_printf("%s\n", msg);
 	exit(-1);
 }
