@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_links.c                                        :+:      :+:    :+:   */
+/*   get_links_and_solve.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 21:30:01 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/17 17:40:25 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/18 21:47:34 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,17 @@ static void	init_map(int n, int map[][n])
 	return ;
 }
 
-void		get_links(char *line, t_rlist *room_list)
+void		get_links_and_solve(char *line, t_rlist *room_list, int num_ants)
 {
-	int		id1;
-	int		id2;
-	int		map[room_list->id + 1][room_list->id + 1];
-	t_llist	*link_list;
+	int			id1;
+	int			id2;
+	int			map[room_list->id + 1][room_list->id + 1];
+	t_mapdata	mapdata;
+	t_rlist		**room_arr;
 
-	init_map(room_list->id + 1, map);
+	mapdata.num_rooms = room_list->id + 1;
+	mapdata.num_ants = num_ants;
+	init_map(mapdata.num_rooms, map);
 	if (!line[0])
 		throw_error("ERROR: No links\n", room_list);
 	get_names(&id1, &id2, line, room_list);
@@ -93,4 +96,5 @@ void		get_links(char *line, t_rlist *room_list)
 		map[id2][id1] = 1;
 	}
 	print_map(room_list->id + 1, map);/////////////////////
+	get_paths(room_list, mapdata, map);
 }

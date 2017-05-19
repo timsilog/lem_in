@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 16:18:43 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/17 17:33:58 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/18 15:42:51 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	add_room(t_rlist **room_list, int coord[2],
 	temp->end = cond == c_end ? 1 : 0;
 	temp->next = *room_list;
 	temp->id = id++;
+	temp->has_ant = 0;
 	*room_list = temp;
 }
 
