@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 15:32:11 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/24 18:37:00 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/28 22:40:02 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_rlist	**get_room_arr(t_rlist *room_list, t_mapdata *mapdata)
 {
 	t_rlist	**room_arr;
 
-	if (!(room_arr = (t_rlist*)malloc(sizeof(t_rlist) * num_rooms)))
+	if (!(room_arr = (t_rlist**)malloc(sizeof(t_rlist*) * mapdata->num_rooms)))
 		throw_error("ERROR: Memory error\n", room_list);
 	while (room_list)
 	{
@@ -46,7 +46,7 @@ static void		init_paths(t_mapdata mapdata,
 	int j;
 
 	i = -1;
-	while (++i < mapdata.link2start)
+	while (++i < mapdata.links2start)
 	{
 		j = -1;
 		while (++j < mapdata.num_rooms)
@@ -97,8 +97,10 @@ static void		remove_shortest_links(t_mapdata mapdata, int map[][mapdata.num_room
 	int i;
 
 	i = -1;
-	while (++i < mapdata.num_rooms)
+	while (++i + 1 < mapdata.num_rooms)
 	{
+		map[shortest[i]][shortest[i + 1]] = 0;
+		map[shortest[i + 1]][shortest[i]] = 0;
 	}
 }
 
@@ -119,7 +121,7 @@ static void		find_shortest_path(t_mapdata mapdata,
 	{
 		// if current link exists, insert next room, otherwise
 		// go through loop again with i++
-		if (mapdata.map[current[j]][i] && unused_room(mapdata.num_rooms, current, j))
+		if (map[current[j]][i] && unused_room(mapdata.num_rooms, current, j))
 		{
 			current[++j] = i;
 			i = -1;
@@ -142,13 +144,12 @@ static void		find_paths(t_rlist *room_list, t_rlist **room_arr, t_mapdata mapdat
 	int		shortest[mapdata.num_rooms];
 
 	i = -1;
-	shortest = -1;
 	init_paths(mapdata, paths);
 	while (++i < mapdata.links2start)
 	{
-		find_shortest_path(mapdata, map, paths[i], shortest)
-		if (shortest[0] < 0) // if no paths found
-			//do something aobut it			
+		find_shortest_path(mapdata, map, paths[i], shortest);
+		if (shortest[0] < 0) // if no paths found 
+			ft_printf("no paths found"); // actually do something about it..
 		remove_shortest_links(mapdata, map, shortest);
 	}
 }
@@ -162,6 +163,6 @@ void			get_paths(t_rlist *room_list, t_mapdata mapdata, int map[][mapdata.num_ro
 	i = -1;
 	mapdata.links2start = 0;
 	while (++i < mapdata.num_rooms)
-		mapdata.links2start += map[start_end[0]][i];
+		mapdata.links2start += map[mapdata.start_id][i];
 	find_paths(room_list, room_arr, mapdata, map);
 }
