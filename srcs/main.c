@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 13:01:08 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/18 17:23:06 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/29 20:12:11 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ static int	get_num_ants(char *line)
 
 	get_next_line(0, &line);
 	ft_printf("%s\n", line);
+	if (!ft_strcmp(line, "##start") || !ft_strcmp(line, "##end") ||
+			! ft_isdigit(line[0]))
+		throw_error("ERROR: Missing number of ants\n", 0);
 	while (line[0] == '#')
 	{
 		get_next_line(0, &line);

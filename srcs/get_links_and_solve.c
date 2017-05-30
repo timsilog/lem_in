@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 21:30:01 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/18 21:47:34 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/29 20:13:37 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void		get_links_and_solve(char *line, t_rlist *room_list, int num_ants)
 	while (get_next_line(0, &line))
 	{
 		ft_printf("%s\n", line);
+		if (line[0] == '#')
+			continue ;
 		get_names(&id1, &id2, line, room_list);
 		map[id1][id2] = 1;
 		map[id2][id1] = 1;

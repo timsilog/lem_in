@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:59:10 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/28 22:22:44 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/29 19:20:00 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,6 @@ void				get_paths(t_rlist *room_list, t_mapdata mapdata, int map[][mapdata.num_r
 
 void print_room_list(t_rlist *room_list);
 void print_map(int n, int map[][n]);
+void print_shortest(t_mapdata mapdata, int shortest[mapdata.num_rooms]);
+void print_paths(t_mapdata mapdata, int paths[mapdata.links2start][mapdata.num_rooms]);
 #endif

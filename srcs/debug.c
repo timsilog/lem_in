@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 21:43:21 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/17 17:26:35 by tjose            ###   ########.fr       */
+/*   Updated: 2017/05/29 21:42:02 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,26 @@ void	print_map(int n, int map[][n])
 		while (++j < n)
 			ft_printf("%d ", map[i][j]);
 		ft_printf("\n");
+	}
+}
+
+void	print_shortest(t_mapdata mapdata, int shortest[mapdata.num_rooms])
+{
+	int i = -1;
+
+	while (++i < mapdata.num_rooms)
+	{
+		ft_printf("%d ", shortest[i]);
+	}
+	ft_printf("\n");
+}
+
+void	print_paths(t_mapdata mapdata, int paths[mapdata.links2start][mapdata.num_rooms])
+{
+	int i = -1;
+	while (++i < mapdata.links2start)
+	{
+		ft_printf("path %d: ", i);
+		print_shortest(mapdata, paths[i]);
 	}
 }
