@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 21:30:01 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/29 20:13:37 by tjose            ###   ########.fr       */
+/*   Updated: 2017/06/01 22:17:44 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void		get_links_and_solve(char *line, t_rlist *room_list, int num_ants)
 	int			id2;
 	int			map[room_list->id + 1][room_list->id + 1];
 	t_mapdata	mapdata;
-	t_rlist		**room_arr;
 
 	mapdata.num_rooms = room_list->id + 1;
 	mapdata.num_ants = num_ants;
