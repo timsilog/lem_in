@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:59:10 by tjose             #+#    #+#             */
-/*   Updated: 2017/06/01 22:09:45 by tjose            ###   ########.fr       */
+/*   Updated: 2017/06/02 13:03:13 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void				find_shortest_path(t_mapdata mapdata,
 		int shortest[mapdata.num_rooms],
 		int current[mapdata.num_rooms]);
 void				solve(t_mapdata mapdata,
-		int	paths[mapdata.links2start][mapdata.num_rooms],
-		t_rlist *room_list, t_rlist **room_arr);
+		int	paths[mapdata.links2start][mapdata.num_rooms], t_rlist **room_arr);
+void				skip_comments(char **line);
 
 //debug
 void print_room_list(t_rlist *room_list);

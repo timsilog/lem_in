@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 21:43:21 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/29 21:42:02 by tjose            ###   ########.fr       */
+/*   Updated: 2017/06/02 11:29:33 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	print_room_list(t_rlist *room_list)
 {
 	while (room_list)
 	{
-		ft_printf("name: %s\nid = %d\ncoord: %d,%d\n",
-				room_list->name, room_list->id,
-				room_list->coord[0], room_list->coord[1]);
+		ft_printf("id%d: name: %s\n",
+				room_list->id, room_list->name);
 		if (room_list->start)
 			ft_printf("start^^^\n");
 		if (room_list->end)

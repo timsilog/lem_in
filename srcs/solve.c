@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 16:14:19 by tjose             #+#    #+#             */
-/*   Updated: 2017/06/01 23:46:54 by tjose            ###   ########.fr       */
+/*   Updated: 2017/06/02 13:25:30 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,17 @@ static void	do_one_turn(t_mapdata mapdata,
 		}
 		else if (!ants[a].in && ++new < mapdata.num_paths)
 		{	
-			if (new && mapdata.num_ants - a < path_length(mapdata, paths[new]))
-			{
-				ft_printf("in %d\n", path_length(mapdata, paths[new]));
+			if (new && mapdata.num_ants - a < path_length(mapdata, paths[new] - path_length(mapdata, paths[new - 1])))
 				ants[a].path_id = 0;
-			}
 			else
 				ants[a].path_id = new;
 			ants[a].in = 1;
 			ants[a].pos++;
+			if (paths[ants[a].path_id][ants[a].pos] == mapdata.end_id)
+				ants[a].in = -1;
 			ft_printf("L%d-%s ", a + 1, room_arr[paths[ants[a].path_id][ants[a].pos]]->name);
 		}
 	}
-	ft_printf("\n");
 }
 
 static int	done(t_mapdata mapdata, t_antdata ants[mapdata.num_ants])
@@ -74,9 +72,8 @@ static int	done(t_mapdata mapdata, t_antdata ants[mapdata.num_ants])
 }
 
 void		solve(t_mapdata mapdata,
-		int paths[mapdata.links2start][mapdata.num_rooms],
-		t_rlist *room_list, t_rlist **room_arr)
-{//check if we need roomlist here (need throw error fun?)
+		int paths[mapdata.links2start][mapdata.num_rooms], t_rlist **room_arr)
+{
 	int			i;
 	t_antdata	ants[mapdata.num_ants];
 
@@ -89,6 +86,6 @@ void		solve(t_mapdata mapdata,
 	while (!done(mapdata, ants))
 	{
 		do_one_turn(mapdata, paths, ants, room_arr);
+		ft_printf("\n");
 	}
-	(void)room_list;
 }

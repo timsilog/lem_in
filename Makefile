@@ -6,7 +6,7 @@
 #    By: tjose <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/09 12:58:46 by tjose             #+#    #+#              #
-#    Updated: 2017/06/01 22:06:21 by tjose            ###   ########.fr        #
+#    Updated: 2017/06/02 11:23:21 by tjose            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCFILES = main.c \
 		   get_paths.c \
 		   find_shortest_path.c \
 		   solve.c \
+		   skip_comments.c \
 		   debug.c
 SRCDIR = ./srcs/
 OBJDIR = ./objs/

@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 21:30:01 by tjose             #+#    #+#             */
-/*   Updated: 2017/06/01 22:17:44 by tjose            ###   ########.fr       */
+/*   Updated: 2017/06/02 13:05:12 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	get_id(int *id, char *name, t_rlist *room_list)
 		}
 		room_list = room_list->next;
 	}
+	ft_printf("missing: %s\n",name);
 	throw_error("ERROR: Room name for link doesn't exist\n", temp);
 }
 
@@ -41,9 +42,9 @@ static void	get_names(int *id1, int *id2, char *line,
 		i++;
 	if (line[0] == '-' || !line[i] || !line[i + 1])
 		throw_error("ERROR: Invalid link", room_list);
-	if (!(name1 = malloc(sizeof(char) * i)))
+	if (!(name1 = malloc(sizeof(char) * i + 1)))
 		throw_error("ERROR: Memory error", room_list);
-	if (!(name2 = malloc(sizeof(char) * ft_strlen(&line[i + 1]))))
+	if (!(name2 = malloc(sizeof(char) * ft_strlen(&line[i + 1]) + 1)))
 	{
 		free(name1);
 		throw_error("ERROR: Memory error", room_list);
@@ -96,6 +97,5 @@ void		get_links_and_solve(char *line, t_rlist *room_list, int num_ants)
 		map[id1][id2] = 1;
 		map[id2][id1] = 1;
 	}
-	print_map(room_list->id + 1, map);/////////////////////
 	get_paths(room_list, mapdata, map);
 }

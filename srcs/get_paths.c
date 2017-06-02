@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 15:32:11 by tjose             #+#    #+#             */
-/*   Updated: 2017/06/01 16:24:02 by tjose            ###   ########.fr       */
+/*   Updated: 2017/06/02 13:24:29 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 ** ants that can be deployed at a time (aka max # of paths).
 ** Finds the shortest path(s) up to max # of paths.
 ** Prioritizes shortest path(s) over reaching max # of paths.
-**
-** Total # moves = #ants / #paths + longest_path - 1
 */
 
 static t_rlist	**get_room_arr(t_rlist *room_list, t_mapdata *mapdata)
@@ -74,20 +72,21 @@ static void		find_paths(t_rlist *room_list, t_rlist **room_arr, t_mapdata mapdat
 
 	i = -1;
 	init_paths(mapdata, paths);
+	while (++i < mapdata.num_rooms)
+		current[i] = -1;
+	i = -1;
 	while (++i < mapdata.links2start)
 	{
 		find_shortest_path(mapdata, map, paths[i], current);
-		//print_shortest(mapdata, paths[i]);////////////////////////////////////////
-		if (paths[0][0] < 0) // if no paths found 
+		if (paths[0][0] < 0)
 			throw_error("ERROR: No paths found\n", room_list);
 		remove_shortest_links(mapdata, map, paths[i]);
 	}
-	print_paths(mapdata, paths);///////////////////////
 	i = 0;
 	while (i < mapdata.links2start && paths[i][0] != -1)
 		i++;
 	mapdata.num_paths = i;
-	solve(mapdata, paths, room_list, room_arr);
+	solve(mapdata, paths, room_arr);
 }
 
 void			get_paths(t_rlist *room_list, t_mapdata mapdata, int map[][mapdata.num_rooms])
