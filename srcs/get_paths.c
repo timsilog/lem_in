@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 15:32:11 by tjose             #+#    #+#             */
-/*   Updated: 2017/05/29 21:00:59 by tjose            ###   ########.fr       */
+/*   Updated: 2017/06/01 16:24:02 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,44 +54,6 @@ static void		init_paths(t_mapdata mapdata,
 	}
 }
 
-static void		check_shortest(t_mapdata mapdata,
-		int current[mapdata.num_rooms], int shortest[mapdata.num_rooms])
-{
-	int len_c;
-	int	len_s;
-	int i;
-
-	i = -1;
-	len_c = 0;
-	len_s = 0;
-	while (++i < mapdata.num_rooms)
-	{
-		if (current[i] > -1)
-			len_c++;
-		if (shortest[i] > -1)
-			len_s++;
-	}
-	if (len_c < len_s || !len_s)
-	{
-		i = -1;
-		while (++i < mapdata.num_rooms)
-			shortest[i] = current[i];
-	}
-}
-
-static int		unused_room(int num_rooms, int current[num_rooms], int check)
-{
-	int	i;
-
-	i = -1;
-	while (++i < num_rooms)
-	{
-		if (current[i] == check)
-			return (0);
-	}
-	return (1);
-}
-
 static void		remove_shortest_links(t_mapdata mapdata, int map[][mapdata.num_rooms], int shortest[mapdata.num_rooms])
 {
 	int i;
@@ -102,41 +64,6 @@ static void		remove_shortest_links(t_mapdata mapdata, int map[][mapdata.num_room
 		map[shortest[i]][shortest[i + 1]] = 0;
 		map[shortest[i + 1]][shortest[i]] = 0;
 	}
-}
-
-static void		find_shortest_path(t_mapdata mapdata,
-		int map[][mapdata.num_rooms],
-		int shortest[mapdata.num_rooms],
-		int current[mapdata.num_rooms])
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	j = 0;
-	current[j] = mapdata.start_id;
-
-	// check current room for all possible links
-	while (j > -1)
-	{
-		// if current link exists, insert next room, otherwise
-		// go through loop again with i++
-		i++;
-		if (map[current[j]][i] && unused_room(mapdata.num_rooms, current, i))
-		{
-			current[++j] = i;
-			i = -1;
-			// if current room is the end room, check if shortest and replace
-			if (current[j] == mapdata.end_id)
-				check_shortest(mapdata, current, shortest);
-		}
-		while (i == mapdata.num_rooms - 1)
-		{
-			i = current[j];
-			current[j--] = -1;
-		}
-	}
-
 }
 
 static void		find_paths(t_rlist *room_list, t_rlist **room_arr, t_mapdata mapdata, int map[][mapdata.num_rooms])
@@ -156,6 +83,11 @@ static void		find_paths(t_rlist *room_list, t_rlist **room_arr, t_mapdata mapdat
 		remove_shortest_links(mapdata, map, paths[i]);
 	}
 	print_paths(mapdata, paths);///////////////////////
+	i = 0;
+	while (i < mapdata.links2start && paths[i][0] != -1)
+		i++;
+	mapdata.num_paths = i;
+	solve(mapdata, paths, room_list, room_arr);
 }
 
 void			get_paths(t_rlist *room_list, t_mapdata mapdata, int map[][mapdata.num_rooms])

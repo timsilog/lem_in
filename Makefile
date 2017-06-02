@@ -6,13 +6,13 @@
 #    By: tjose <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/09 12:58:46 by tjose             #+#    #+#              #
-#    Updated: 2017/05/18 17:24:11 by tjose            ###   ########.fr        #
+#    Updated: 2017/06/01 16:04:21 by tjose            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem_in
 CC = gcc
-CFLAGS =
+CFLAGS = -Wall -Werror -Wextra
 SRCS = $(addprefix $(SRCDIR), $(SRCFILES))
 OBJS = $(addprefix $(OBJDIR), $(SRCFILES:.c=.o))
 SRCFILES = main.c \
@@ -21,6 +21,7 @@ SRCFILES = main.c \
 		   get_links_and_solve.c \
 		   cleanup.c \
 		   get_paths.c \
+		   find_shortest_path.c \
 		   debug.c
 SRCDIR = ./srcs/
 OBJDIR = ./objs/
