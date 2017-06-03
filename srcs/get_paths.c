@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 15:32:11 by tjose             #+#    #+#             */
-/*   Updated: 2017/06/02 13:24:29 by tjose            ###   ########.fr       */
+/*   Updated: 2017/06/02 13:31:46 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ static void		init_paths(t_mapdata mapdata,
 	}
 }
 
-static void		remove_shortest_links(t_mapdata mapdata, int map[][mapdata.num_rooms], int shortest[mapdata.num_rooms])
+static void		remove_shortest_links(t_mapdata mapdata,
+		int map[][mapdata.num_rooms],
+		int shortest[mapdata.num_rooms])
 {
 	int i;
 
@@ -64,7 +66,8 @@ static void		remove_shortest_links(t_mapdata mapdata, int map[][mapdata.num_room
 	}
 }
 
-static void		find_paths(t_rlist *room_list, t_rlist **room_arr, t_mapdata mapdata, int map[][mapdata.num_rooms])
+static void		find_paths(t_rlist *room_list, t_rlist **room_arr,
+		t_mapdata mapdata, int map[][mapdata.num_rooms])
 {
 	int		paths[mapdata.links2start][mapdata.num_rooms];
 	int		i;
@@ -89,7 +92,8 @@ static void		find_paths(t_rlist *room_list, t_rlist **room_arr, t_mapdata mapdat
 	solve(mapdata, paths, room_arr);
 }
 
-void			get_paths(t_rlist *room_list, t_mapdata mapdata, int map[][mapdata.num_rooms])
+void			get_paths(t_rlist *room_list, t_mapdata mapdata,
+		int map[][mapdata.num_rooms])
 {
 	int		i;
 	t_rlist	**room_arr;

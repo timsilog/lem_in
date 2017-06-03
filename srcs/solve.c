@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 16:14:19 by tjose             #+#    #+#             */
-/*   Updated: 2017/06/02 13:25:30 by tjose            ###   ########.fr       */
+/*   Updated: 2017/06/02 13:41:41 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,33 @@ static int	path_length(t_mapdata mapdata, int path[mapdata.num_rooms])
 	return (i - 1);
 }
 
-static void	do_one_turn(t_mapdata mapdata,
-		int paths[mapdata.links2start][mapdata.num_rooms],
-		t_antdata ants[mapdata.num_ants], t_rlist **room_arr)
+static void	do_one_turn(t_mapdata md,
+		int paths[md.links2start][md.num_rooms],
+		t_antdata a[md.num_ants], t_rlist **r)
 {
-	int a;
+	int i;
 	int	new;
 
-	a = -1;
+	i = -1;
 	new = -1;
-	while (++a < mapdata.num_ants)
+	while (++i < md.num_ants)
 	{
-		if (ants[a].in > 0)
+		if (a[i].in > 0)
 		{
-			ants[a].pos++;
-			ft_printf("L%d-%s ", a + 1, room_arr[paths[ants[a].path_id][ants[a].pos]]->name);
-			if (paths[ants[a].path_id][ants[a].pos] == mapdata.end_id)
-				ants[a].in = -1;
+			a[i].pos++;
+			ft_printf("L%d-%s ", i + 1, r[paths[a[i].path_id][a[i].pos]]->name);
+			if (paths[a[i].path_id][a[i].pos] == md.end_id)
+				a[i].in = -1;
 		}
-		else if (!ants[a].in && ++new < mapdata.num_paths)
-		{	
-			if (new && mapdata.num_ants - a < path_length(mapdata, paths[new] - path_length(mapdata, paths[new - 1])))
-				ants[a].path_id = 0;
-			else
-				ants[a].path_id = new;
-			ants[a].in = 1;
-			ants[a].pos++;
-			if (paths[ants[a].path_id][ants[a].pos] == mapdata.end_id)
-				ants[a].in = -1;
-			ft_printf("L%d-%s ", a + 1, room_arr[paths[ants[a].path_id][ants[a].pos]]->name);
+		else if (!a[i].in && ++new < md.num_paths)
+		{
+			a[i].path_id = new && md.num_ants - i < path_length(md, paths[new])
+				- path_length(md, paths[new - 1]) ? 0 : new;
+			a[i].in = 1;
+			a[i].pos++;
+			if (paths[a[i].path_id][a[i].pos] == md.end_id)
+				a[i].in = -1;
+			ft_printf("L%d-%s ", i + 1, r[paths[a[i].path_id][a[i].pos]]->name);
 		}
 	}
 }

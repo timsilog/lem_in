@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 21:30:01 by tjose             #+#    #+#             */
-/*   Updated: 2017/06/02 13:05:12 by tjose            ###   ########.fr       */
+/*   Updated: 2017/06/02 13:30:48 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static void	get_id(int *id, char *name, t_rlist *room_list)
 		}
 		room_list = room_list->next;
 	}
-	ft_printf("missing: %s\n",name);
-	throw_error("ERROR: Room name for link doesn't exist\n", temp);
+	ft_printf("ERROR: Missing: %s\n", name);
+	throw_error("Room name for link doesn't exist\n", temp);
 }
 
 static void	get_names(int *id1, int *id2, char *line,

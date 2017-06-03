@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:59:10 by tjose             #+#    #+#             */
-/*   Updated: 2017/06/02 13:03:13 by tjose            ###   ########.fr       */
+/*   Updated: 2017/06/02 13:43:32 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ typedef enum
 
 int					lem_in_atoi(const char *str);
 t_rlist				*get_rooms(char **line);
-void				get_links_and_solve(char *line, t_rlist *room_list, int num_ants);
+void				get_links_and_solve(char *line,
+		t_rlist *room_list, int num_ants);
 void				throw_error(char *msg, t_rlist *room_list);
 void				free_rlist(t_rlist *room_list);
-void				get_paths(t_rlist *room_list, t_mapdata mapdata, int map[][mapdata.num_rooms]);
+void				get_paths(t_rlist *room_list, t_mapdata mapdata,
+		int map[][mapdata.num_rooms]);
 void				find_shortest_path(t_mapdata mapdata,
 		int map[][mapdata.num_rooms],
 		int shortest[mapdata.num_rooms],

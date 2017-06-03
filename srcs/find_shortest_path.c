@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 14:44:14 by tjose             #+#    #+#             */
-/*   Updated: 2017/06/02 10:56:33 by tjose            ###   ########.fr       */
+/*   Updated: 2017/06/02 13:29:52 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void		find_shortest_path(t_mapdata mapdata,
 	i = -1;
 	j = 0;
 	current[j] = mapdata.start_id;
-
 	while (j > -1)
 	{
 		i++;

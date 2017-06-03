@@ -6,7 +6,7 @@
 /*   By: tjose <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 13:01:08 by tjose             #+#    #+#             */
-/*   Updated: 2017/06/02 13:25:21 by tjose            ###   ########.fr       */
+/*   Updated: 2017/06/02 13:29:07 by tjose            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static int	get_num_ants(char *line)
 	num_ants = lem_in_atoi(line);
 	return (num_ants);
 }
-int			main()
+
+int			main(void)
 {
 	char	*line;
 	int		num_ants;
